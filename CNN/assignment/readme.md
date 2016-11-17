@@ -22,7 +22,7 @@ X_test -= mean_image
 ## Your tasks
 * Implement the above ConvNet
 * Train this shallow ConvNet for 20 epochs; Report the loss & accuracy on validation set
-* Report performance of the best model (according to performance on validation set) on the test set
+* Report performance of the best model (according to performance on validation set) on the test set (should be >= 60%)
 * Try different architectures (make it deeper, add dropout)
 * Write a report (.pdf format) summarizing your steps and results. Submit it along with your source code.
 * A README.md describing how to run your code. Please make it as easy as possible for me to run and see your reported results.
