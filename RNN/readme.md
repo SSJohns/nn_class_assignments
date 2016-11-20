@@ -4,7 +4,7 @@ This assignment is based on the [awesome blogpost](http://karpathy.github.io/201
 ## Your tasks in this assignment:
 * Read [http://karpathy.github.io/2015/05/21/rnn-effectiveness/](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 * Choose your data. You can choose one of datasets mentioned in Karpathy’s blogpost, or find other dataset that is interesting for your. Remember to choose a corpus whose content has some special structure, so that it's easier for evaluation. For example, you can train a model to learn to write a C program in linux kernel style, or generates writing that sounds like Shakespear's or Leo Tolstoy’s. In this github repository we also provide an example dataset for you, which is a copy of over [1600+ Xmas Carols and Hymns in ABC notation](http://www.stephenmerrony.co.uk/ABC/Carols/). Using this dataset you can train your network to generate its own Xmas Carols!
-* Train a character-level RNNs using Tensorflow
+* Train a character-level RNNs using either Tensorflow, TFLearn, Keras.
 * Every now and then, sample from your model. Save the iteration number and the sampling output to a file so that you can check your model's progress.
 * Write a report (.pdf format only) detailing what data you use, your model's architecture (number of layers, hidden state size), and your training strategy. Also discuss your model's learning progress based on the sampling outputs.
 * Prepare a README.md which shows how to run your code and reproduce your result.
