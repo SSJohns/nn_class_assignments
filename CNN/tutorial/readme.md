@@ -1,4 +1,4 @@
-#TensorFlow 
+#TensorFlow
 This is going to be a slow-pace tutorial, so I beg your pardon if it's too verbose. This repository is for a Neural Network introductory course at the University of Notre Dame (CSE 40868/60868). Author: Toan Nguyen, September 2016.
 
 ##1.	Installation
@@ -6,23 +6,23 @@ This is going to be a slow-pace tutorial, so I beg your pardon if it's too verbo
 ###1.1.	Local Machine
 These instructions assume that you are using python 2.7 on a 64-bit CPU only machine.
 
-Mac: 
+Mac:
 ```bash
-$ sudo easy_install –upgrade six
-$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-py2-none-any.whl 
-$ sudo pip install --upgrade $TF_BINARY_URL 
+$ sudo easy_install -–upgrade six
+$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-py2-none-any.whl
+$ sudo pip install --upgrade $TF_BINARY_URL
 ```
 
 If you're using Homebrew Python then:
 ```bash
-$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-py2-none-any.whl 
-$ pip install --upgrade $TF_BINARY_URL 
+$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-py2-none-any.whl
+$ pip install --upgrade $TF_BINARY_URL
 ```
-		
+
 Linux:
 ```bash
-$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl 
-$ sudo pip install --upgrade $TF_BINARY_URL 
+$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+$ sudo pip install --upgrade $TF_BINARY_URL
 ```
 Methods for using virtualenv, anaconda, and docker can be found [here](https://www.tensorflow.org/versions/r0.9/get_started/os_setup.html)
 
@@ -38,10 +38,10 @@ The TensorFlow setup on the CRC machines is optimized for its GPU, making it muc
 #$ -M <your email>
 #$ -m abe  
 #$ -N <name of your job>
-   
+
 module load python/2.7.11  
 module load tensorflow
-setenv CUDA_VISIBLE_DEVICES 0 
+setenv CUDA_VISIBLE_DEVICES 0
 
 cd your-working-directory
 python tfscript.py
@@ -51,7 +51,7 @@ More information on http://wiki.crc.nd.edu/wiki/index.php/Main_Page
 #### A note on CUDA_VISIBLE_DEVICES
 Tensorflow by default will try to grasp all the available GPU cards. Don't do this! CRC resources are limited, and everyone should receive a fair share. Normally your model will fit into a GPU card on titanx-001 (12GB of memory). To limit your job to a certain GPU card only, use the ```CUDA_VISIBLE_DEVICES``` envrionment variable. In above jobscript we set it to 0, i.e. use the GPU card numbered 0. To check if there's free GPU card, login to CRC, then run this command ```qrsh -q gpu@qa-titanx-001```. If the node titanx-001 is free, you shall have no problem logging in via this command. Once you're on titanx-001, run ```nvidiasmi```. It should show you which GPU cards are being used. There are 4 of them, 0, 1, 2, and 3. Save the free one's number, and use it for the job script above.
 
-If you want to run two scripts at once, make sure to have the CUDA_VISIBLE_DEVICES set to different values (0 or 1). 
+If you want to run two scripts at once, make sure to have the CUDA_VISIBLE_DEVICES set to different values (0 or 1).
 
 You submit job scripts by using the command: ```qsub job.script```
 
@@ -73,7 +73,7 @@ TensorFlow™ is an open source software library for numerical computation using
 If Keras helps you to quickly build and run neural networks, Tensorflow guides you to deeper understanding of how the networks work. It will take more effort to work with Tensorflow, but so is the rewarding. In this section, I'll first give an overview of the computational graph in Tensorflow, then we'll look at how to construct and run an actual simple graph. Lastly, we will see some operations which we will use in our assignment.
 
 ###3.1 Tensorflow overview
-There's no better way to visualize Tensorflow than the provided gif. This gif depicts a classic MNIST example, in which we have some image data of digits, each of shape [28, 28], and we need to classify each image into one of 10 classes (digit from 0 to 9). This gif shows only one hidden layer with ReLU activation followed by a softmax layer. 
+There's no better way to visualize Tensorflow than the provided gif. This gif depicts a classic MNIST example, in which we have some image data of digits, each of shape [28, 28], and we need to classify each image into one of 10 classes (digit from 0 to 9). This gif shows only one hidden layer with ReLU activation followed by a softmax layer.
 
 ![tensorflow](https://www.tensorflow.org/images/tensors_flowing.gif "Tensors flowing")
 
@@ -92,7 +92,7 @@ Let's say we want to write a program which multiplies two matrices of shape 2x3 
 
 
 ```python
-import tensorflow as tf 
+import tensorflow as tf
 
 # The ```Input``` node, which actually consists of two ```placeholders``` in this case
 # We define the type of the placeholder and its shape
@@ -100,7 +100,7 @@ matrix_1 = tf.placeholder(tf.float32, [2, 3])
 matrix_2 = tf.placeholder(tf.float32, [3, 1])
 
 # The ```Matmul``` node
-result = tf.matmul(matrix_1, matrix_2) 
+result = tf.matmul(matrix_1, matrix_2)
 ```
 
 This graph could look like this:  
@@ -118,7 +118,7 @@ with tf.Session() as sess:
 In practice, we construct a graph. Normally it takes some input values via ```placeholders```. Then we launch a session. Under this session, we feed in some data and get the output. For the above matrix multiplication example, the code looks like this:
 
 ```python
-import tensorflow as tf 
+import tensorflow as tf
 import numpy
 
 with tf.Session() as sess:
@@ -175,10 +175,10 @@ with tf.Session() as sess:
 
 	print(loss)
 ```
-As you can see, optimizing is also an operation. 
+As you can see, optimizing is also an operation.
 
 ###3.5 What's next
-* Read about [Variables](https://www.tensorflow.org/versions/r0.9/how_tos/variables/index.html), and [Variable scope](https://www.tensorflow.org/versions/r0.9/how_tos/variable_scope/index.html#variable-scope-example) 
+* Read about [Variables](https://www.tensorflow.org/versions/r0.9/how_tos/variables/index.html), and [Variable scope](https://www.tensorflow.org/versions/r0.9/how_tos/variable_scope/index.html#variable-scope-example)
 * See ```iris_tensorflow.py``` for an implementation in Tensorflow for the Iris dataset.
 * If you want more examples, have a look at this [awesome repo](https://github.com/aymericdamien/TensorFlow-Examples)
 
@@ -189,7 +189,7 @@ In this section, we will look at some Tensorflow operations that we will use for
 There are various ways of rectification of the linear function. As you remember from the class, the simplest option is ```f(x) = max(0, x)```. In Tensorflow, this is defined by the operation ```tf.nn.relu(x)```. In code:
 
 ```python
-import tensorflow as tf 
+import tensorflow as tf
 import numpy
 
 with tf.Session() as sess:
@@ -217,7 +217,7 @@ We will use [tf.nn.conv2d](https://www.tensorflow.org/versions/r0.9/api_docs/pyt
 
 ```python
 from __future__ import print_function, division
-import tensorflow as tf 
+import tensorflow as tf
 import numpy
 from skimage import io
 
@@ -260,7 +260,7 @@ Let's see another example of using multiple filters. Here is a naive implementat
 
 ```python
 from __future__ import print_function, division
-import tensorflow as tf 
+import tensorflow as tf
 import numpy
 from skimage import io
 
@@ -308,7 +308,7 @@ We have talked about pooling in the class. A pooling layer is often placed in be
 Let's try a max pool of width = 3 and stride = 2. This should reduce the size of image by 2.  
 ```python
 from __future__ import print_function, division
-import tensorflow as tf 
+import tensorflow as tf
 import numpy
 from skimage import io
 
@@ -325,7 +325,7 @@ with tf.Session() as sess:
 
 	# http://senseshaper.com/wp-content/uploads/2013/05/3wolfmoon.jpg
 	img = io.imread('./Lenna.png')
-	result = sess.run(output, {input: img})	
+	result = sess.run(output, {input: img})
 	print(result.shape) # (256, 256, 3)
 	io.imsave('./Lenna_maxpooled.png', result.astype('uint8'))
 ```
@@ -333,4 +333,4 @@ with tf.Session() as sess:
 ![Lenna_maxpooled](Lenna_maxpooled.png "Lenna_maxpooled")
 
 ##5. Final note
-Actually training a neural network consists of multiple steps from preprocessing data, constructing the network, making sure all the shapes fit right in. It could be beneficial to look at this [example](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/examples/3_NeuralNetworks/convolutional_network.py) of how to do the training and evaluation, specifically in the context of ConvNet with MNIST data. This example is similar to the assignment, albeit CIFAR-10 is more complicated than MNIST. 
+Actually training a neural network consists of multiple steps from preprocessing data, constructing the network, making sure all the shapes fit right in. It could be beneficial to look at this [example](https://github.com/aymericdamien/TensorFlow-Examples/blob/master/examples/3_NeuralNetworks/convolutional_network.py) of how to do the training and evaluation, specifically in the context of ConvNet with MNIST data. This example is similar to the assignment, albeit CIFAR-10 is more complicated than MNIST.
